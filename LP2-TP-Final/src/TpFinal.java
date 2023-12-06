@@ -229,9 +229,9 @@ public class TpFinal {
 
         frame.setVisible(true);
     }
-
-    private static void clearInputs(JTextField... fields) {
-        for (JTextField field : fields) {
+    
+    private static void clearInputs(TextField... fields) {
+        for (TextField field : fields) {
             field.setText("");
         }
     }
