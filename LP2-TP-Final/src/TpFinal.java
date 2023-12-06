@@ -1,10 +1,9 @@
 import com.google.gson.Gson;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.sql.*;
-
+//Vinnicius e Ronald
 public class TpFinal {
     static Integer currentRecord;
 
@@ -20,52 +19,101 @@ public class TpFinal {
 
         final Connection finalConnection = connection;
 
-        JFrame frame = new JFrame("Cadastro de Alunos");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Frame frame = new Frame("Cadastro de Alunos");
         frame.setSize(400, 250);
-        frame.setLayout(new GridLayout(2, 1));
+        frame.setLayout(new BorderLayout());
+        frame.setResizable(false);
+        Color bgColor = new Color(13, 17, 23);
+        Color lbColor = new Color(201, 209, 217);
+        Color btColor_1 = new Color(48, 54, 61);
+        Color btColor_2 = new Color(56, 139, 253);
+        Color btColor_3 = new Color(183, 97, 0);
+        Color lbColor_2 = new Color(255, 255, 255);
+        Font lbFont = new Font("Arial", Font.BOLD, 12);
+        frame.setBackground(bgColor);
+        frame.setForeground(lbColor);        
 
-        JLabel nomeLabel = new JLabel("Nome: ");
-        JTextField nomeInput = new JTextField(20);
-        JButton pesquisarButton = new JButton("Pesquisar");
-        JPanel topRow = new JPanel(new FlowLayout());
+        //LABELS
+        Label nomeLabel = new Label("Nome:");
+        nomeLabel.setForeground(lbColor);
+        Label nameLabel = new Label("Nome:");
+        nameLabel.setForeground(lbColor);
+        Label idadeLabel = new Label("Idade:");
+        idadeLabel.setForeground(lbColor);
+        Label pesoLabel = new Label("Peso:");
+        pesoLabel.setForeground(lbColor);
+        Label alturaLabel = new Label("Altura:");
+        alturaLabel.setForeground(lbColor);
+        Label objetivoLabel = new Label("Objetivo");
+        objetivoLabel.setForeground(lbColor);
+
+        //TEXTFIELDS
+        TextField nomeInput = new TextField();
+        nomeInput.setColumns(25);
+        nomeInput.setBackground(bgColor);
+        TextField nameInput = new TextField();
+        nameInput.setBackground(bgColor);
+        TextField idadeInput = new TextField();
+        idadeInput.setBackground(bgColor);
+        TextField pesoInput = new TextField();
+        pesoInput.setBackground(bgColor);
+        TextField alturaInput = new TextField();
+        alturaInput.setBackground(bgColor);
+        TextField objetivoInput = new TextField();
+        objetivoInput.setBackground(bgColor);
+
+        //BUTTONS
+        Button pesquisarButton = new Button("Pesquisar");
+        pesquisarButton.setBackground(btColor_2);
+        pesquisarButton.setForeground(lbColor_2);
+        pesquisarButton.setFont(lbFont);
+        Button incluirButton = new Button("Incluir");
+        incluirButton.setBackground(btColor_1);
+        incluirButton.setForeground(lbColor_2);
+        incluirButton.setFont(lbFont);
+        Button limparButton = new Button("Limpar");
+        limparButton.setBackground(btColor_1);
+        limparButton.setForeground(lbColor_2);
+        limparButton.setFont(lbFont);
+        Button apresentaButton = new Button("Apresenta Dados");
+        apresentaButton.setFont(lbFont);
+        apresentaButton.setBackground(btColor_1);
+        apresentaButton.setForeground(lbColor_2);
+        Button sairButton = new Button("Sair");
+        sairButton.setBackground(btColor_3);
+        sairButton.setForeground(lbColor_2);
+        sairButton.setFont(lbFont);
+
+        //PANELS
+        Panel topRow = new Panel(new FlowLayout(FlowLayout.CENTER));
+        Panel centerRow = new Panel(new GridLayout(5, 2, 10, 5));
+        Panel bottomRow = new Panel(new GridLayout(2, 2, 10, 10));
+
+        //Organizing the Panels
         topRow.add(nomeLabel);
         topRow.add(nomeInput);
         topRow.add(pesquisarButton);
 
-        JLabel nameLabel = new JLabel("Nome: ");
-        JTextField nameInput = new JTextField(10);
-        JLabel idadeLabel = new JLabel("Idade: ");
-        JTextField idadeInput = new JTextField(10);
-        JLabel pesoLabel = new JLabel("Peso: ");
-        JTextField pesoInput = new JTextField(10);
-        JLabel alturaLabel = new JLabel("Altura: ");
-        JTextField alturaInput = new JTextField(10);
-        JLabel objetivoLabel = new JLabel("Objetivo: ");
-        JTextField objetivoInput = new JTextField(10);
-        JButton incluirButton = new JButton("Incluir");
-        JButton limparButton = new JButton("Limpar");
-        JButton apresentaButton = new JButton("Apresenta Dados");
-        JButton sairButton = new JButton("Sair");
-        JPanel bottomRow = new JPanel(new GridLayout(8, 2));
-
-        bottomRow.add(nameLabel);
-        bottomRow.add(nameInput);
-        bottomRow.add(idadeLabel);
-        bottomRow.add(idadeInput);
-        bottomRow.add(pesoLabel);
-        bottomRow.add(pesoInput);
-        bottomRow.add(alturaLabel);
-        bottomRow.add(alturaInput);
-        bottomRow.add(objetivoLabel);
-        bottomRow.add(objetivoInput);
+        centerRow.add(nameLabel);
+        centerRow.add(nameInput);
+        centerRow.add(idadeLabel);
+        centerRow.add(idadeInput);
+        centerRow.add(pesoLabel);
+        centerRow.add(pesoInput);
+        centerRow.add(alturaLabel);
+        centerRow.add(alturaInput);
+        centerRow.add(objetivoLabel);
+        centerRow.add(objetivoInput);
         bottomRow.add(incluirButton);
         bottomRow.add(limparButton);
         bottomRow.add(apresentaButton);
         bottomRow.add(sairButton);
 
-        frame.add(topRow);
-        frame.add(bottomRow);
+        frame.add(topRow, BorderLayout.NORTH);
+        frame.add(centerRow, BorderLayout.CENTER);
+        frame.add(bottomRow, BorderLayout.SOUTH);
+
+        frame.setVisible(true);
 
         pesquisarButton.addActionListener(new ActionListener() {
             @Override
@@ -182,8 +230,8 @@ public class TpFinal {
         frame.setVisible(true);
     }
 
-    private static void clearInputs(JTextField... fields) {
-        for (JTextField field : fields) {
+    private static void clearInputs(TextField... fields) {
+        for (TextField field : fields) {
             field.setText("");
         }
     }
