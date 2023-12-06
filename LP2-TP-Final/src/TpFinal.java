@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-
+//Vinnicius e Ronald
 public class TpFinal {
     static Integer currentRecord;
 
@@ -229,7 +229,7 @@ public class TpFinal {
 
         frame.setVisible(true);
     }
-    
+
     private static void clearInputs(TextField... fields) {
         for (TextField field : fields) {
             field.setText("");
